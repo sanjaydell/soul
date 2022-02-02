@@ -1,0 +1,12 @@
+.skip-previous {
+  color: red;
+  margin-left: 2em;
+}
+
+.play {
+  margin-left: 0;
+}
+
+.skip-next {
+  margin-left: 25px;
+}
