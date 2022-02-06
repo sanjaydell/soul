@@ -1,3 +1,17 @@
 .list-group-item {
   padding: 0;
+  cursor: pointer;
+  opacity: 0.8;
+  display: flex;
+}
+
+.list-group {
+  width: 375px;
+  height: 400px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.list-group::-webkit-scrollbar {
+  display: none;
 }

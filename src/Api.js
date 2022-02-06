@@ -1,37 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios';
+import { setContextProvider } from './ContextProvider'
 import Credentials from './Credentials';
 import Dropdown from './Dropdown';
 
-function Api(props) {
-  const credentials = Credentials()
-  const [token, setToken] = useState()
-  const [listOfSongs, setListOfSongs] = useState([])
-
+function Api() {
+  const { searchKey, setSongsList, setToken } = setContextProvider()
+  const {ClientId, ClientSecret} = Credentials()
+  
   useEffect(() => {
-    axios('https://accounts.spotify.com/api/token', {
-      headers: {
-        'Content-Type' : 'application/x-www-form-urlencoded',
-        'Authorization' : 'Basic ' + btoa(credentials.ClientId + ':' + credentials.ClientSecret)      
-      },
-      data: 'grant_type=client_credentials',
-      method: 'POST'
-    }).then(tokenResponse => {      
-    setToken(tokenResponse.data.access_token)
-    const url = `https://api.spotify.com/v1/search?q=${props.searchKey}&type=track&include_external=audio&limit=10`
-    axios(url, {
-        method: 'GET',
-        headers: { 'Authorization' : 'Bearer ' + tokenResponse.data.access_token}
+    async function fetchData () {
+      await axios('https://accounts.spotify.com/api/token', {
+        headers: {
+          'Content-Type' : 'application/x-www-form-urlencoded',
+          'Authorization' : 'Basic ' + btoa(ClientId + ':' + ClientSecret)      
+        },
+        data: 'grant_type=client_credentials',
+        method: 'POST'
+      }).then(tokenResponse => {
+        setToken(tokenResponse.data.access_token)
+        const url = `https://api.spotify.com/v1/search?q=${searchKey}&type=track&include_external=audio&limit=20`
+        axios(url, {
+          method: 'GET',
+          headers: { 'Authorization' : 'Bearer ' + tokenResponse.data.access_token}
+        })
+        .then (response => {
+          console.log(response.data?.tracks?.items)
+          setSongsList(response.data?.tracks?.items)
+        })
       })
-      .then (response => { 
-        console.log(response)
-        setListOfSongs(response.data?.tracks?.items)       
-      });
-  })
-  }, [credentials.ClientId, credentials.ClientSecret, props])
+    }
+    fetchData()
+  }, [searchKey])
 
   return (
-    <Dropdown songs={listOfSongs} />
+    <Dropdown />
   )
 }
 

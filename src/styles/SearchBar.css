@@ -1,0 +1,27 @@
+.search {
+  top: 0;
+}
+
+.search-input {
+  display: flex;
+  width: 400px;
+  margin-right: 140px;
+  border: 0;
+}
+
+.search-icon {
+  display: grid;
+  place-items: center;
+  background-color: white;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.search-field {
+  border: 0;
+  border-radius: 2px;
+  width: 350px;
+  height: 35px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}

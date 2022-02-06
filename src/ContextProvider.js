@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import constate from 'constate'
 
 const UseContextProvider = () => {
@@ -6,6 +6,9 @@ const UseContextProvider = () => {
   const [songsList, setSongsList] = useState([])
   const [currentSong, setCurrentSong] = useState()
   const [image, setImage] = useState()
+  const [searchKey, setSearchKey] = useState('')
+  const [token, setToken] = useState()
+  const [songSrc, setSongSrc] = useState()
 
   return {
     songsList,
@@ -13,12 +16,18 @@ const UseContextProvider = () => {
     currentSong,
     setCurrentSong,
     image,
-    setImage
+    setImage,
+    searchKey,
+    setSearchKey,
+    token,
+    setToken,
+    songSrc,
+    setSongSrc
   }
 }
 
-const [ContextProvider, setProvider] = constate(UseContextProvider)
+const [ContextProvider, setContextProvider] = constate(UseContextProvider)
 
 export default ContextProvider
 
-export setProvider, 
+export { ContextProvider, setContextProvider }
