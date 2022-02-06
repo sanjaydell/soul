@@ -24,7 +24,7 @@ function Dropdown() {
           <br />
           {song?.artists[0].name}
           <button
-            onClick={() => setSongSrc(song.external_urls.spotify)}
+            onClick={() => setSongSrc(song.uri)}
           >
             play
           </button>

@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+#credentials
+.credentials.js
+
 # testing
 /coverage
 

@@ -9,26 +9,3 @@
   justify-content: center;
 }
 
-.footer-left {
-  flex: 0.3;
-}
-
-.footer-center {
-  justify-content: space-between;
-  padding: 20px 150px;
-  flex: 0.7;
-}
-
-.album-logo {
-  object-fit: contain;
-}
-
-.skip-previous {
-}
-
-.play {
-  margin-left: 0;
-}
-
-.skip-next {
-}
